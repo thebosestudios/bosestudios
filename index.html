@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bose Studios — Mobile Games</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface-alt: #1a1a26;
+    --border: #2a2a3a;
+    --text: #e8e8ef;
+    --text-dim: #8888a0;
+    --accent: #6c5ce7;
+    --accent-glow: rgba(108, 92, 231, 0.3);
+    --gradient-1: #6c5ce7;
+    --gradient-2: #a29bfe;
+    --gradient-3: #fd79a8;
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10, 10, 15, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 24px; height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800; font-size: 1.2rem;
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+  }
+  .logo span { -webkit-text-fill-color: var(--text-dim); font-weight: 600; font-size: 0.85rem; margin-left: 6px; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    color: var(--text-dim); text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  .hamburger { display: none; background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
+
+  /* HERO */
+  .hero {
+    min-height: 80vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 24px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 800px; border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-badge {
+    display: inline-block; padding: 6px 16px; border-radius: 50px;
+    background: var(--surface-alt); border: 1px solid var(--border);
+    font-size: 0.82rem; color: var(--text-dim); margin-bottom: 28px;
+    letter-spacing: 0.04em;
+  }
+  .hero-badge em { font-style: normal; color: var(--gradient-2); }
+  .hero h1 {
+    font-family: 'Sora', sans-serif; font-weight: 800;
+    font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.15;
+    margin-bottom: 20px; letter-spacing: -0.03em;
+  }
+  .hero h1 .grad {
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-3));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero p {
+    font-size: 1.1rem; color: var(--text-dim); max-width: 520px; margin: 0 auto 36px;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 32px; border-radius: 50px;
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    color: #fff; font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 24px var(--accent-glow);
+  }
+  .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 32px var(--accent-glow); }
+  .hero-cta svg { width: 18px; height: 18px; }
+
+  /* SECTIONS */
+  .section {
+    max-width: 820px; margin: 0 auto;
+    padding: 80px 24px;
+  }
+  .section-label {
+    font-family: 'Sora', sans-serif; font-weight: 700;
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--gradient-2); margin-bottom: 12px;
+  }
+  .section h2 {
+    font-family: 'Sora', sans-serif; font-weight: 700;
+    font-size: 1.8rem; margin-bottom: 24px; letter-spacing: -0.02em;
+  }
+  .section p, .section li {
+    color: var(--text-dim); margin-bottom: 14px; font-size: 0.95rem;
+  }
+  .section h3 {
+    font-family: 'Sora', sans-serif; font-weight: 600;
+    font-size: 1.15rem; margin: 32px 0 12px; color: var(--text);
+  }
+  .section ul { padding-left: 20px; }
+  .section li { margin-bottom: 8px; }
+
+  .divider {
+    max-width: 820px; margin: 0 auto;
+    border: none; border-top: 1px solid var(--border);
+  }
+
+  /* CONTACT CARD */
+  .contact-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 32px; margin-top: 24px;
+  }
+  .contact-card p { margin-bottom: 8px; }
+  .contact-card a { color: var(--gradient-2); text-decoration: none; }
+  .contact-card a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 40px 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim); font-size: 0.82rem;
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    animation: fadeUp 0.7s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.35s; }
+  .delay-4 { animation-delay: 0.5s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 64px; left: 0; right: 0;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 20px 24px; gap: 16px;
+    }
+    .section { padding: 48px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">BOSE STUDIOS</div>
+    <button class="hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#privacy">Privacy Policy</a></li>
+      <li><a href="#terms">Terms of Service</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge fade-up">A <em>Bose Ventures LLC</em> studio</div>
+    <h1 class="fade-up delay-1">Crafting <span class="grad">games</span><br>worth playing.</h1>
+    <p class="fade-up delay-2">We're a small, independent studio building fun and engaging mobile games for Android — one great experience at a time.</p>
+    <a href="https://play.google.com/store/apps/dev?id=YOUR_DEVELOPER_ID" class="hero-cta fade-up delay-3" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      View on Google Play
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section fade-up" id="about">
+  <div class="section-label">About Us</div>
+  <h2>Who We Are</h2>
+  <p>Bose Studios is the game development arm of <strong>Bose Ventures LLC</strong>. We design, develop, and publish mobile games on the Google Play Store. Our mission is to create entertaining, high-quality gaming experiences that players enjoy coming back to.</p>
+  <p>Whether it's a quick puzzle break or an immersive adventure, we focus on polished gameplay, clean design, and respect for our players' time and privacy.</p>
+</section>
+
+<hr class="divider">
+
+<!-- PRIVACY POLICY -->
+<section class="section" id="privacy">
+  <div class="section-label">Legal</div>
+  <h2>Privacy Policy</h2>
+  <p><strong>Effective Date:</strong> February 26, 2026</p>
+  <p>Bose Ventures LLC ("Bose Studios," "we," "us," or "our") operates mobile applications published under the developer name Bose Studios on the Google Play Store. This Privacy Policy explains how we collect, use, and protect information when you use our apps.</p>
+
+  <h3>1. Information We Collect</h3>
+  <p>Our apps may collect the following types of information:</p>
+  <ul>
+    <li><strong>Device Information:</strong> Device model, operating system version, unique device identifiers, and general diagnostic data to help us fix bugs and improve performance.</li>
+    <li><strong>Usage Data:</strong> Gameplay analytics such as levels completed, session duration, and in-app actions to help us improve the gaming experience.</li>
+    <li><strong>Advertising Data:</strong> If our apps display ads, our third-party ad partners may collect advertising identifiers and general interaction data. Please refer to the respective ad network's privacy policy for more details.</li>
+  </ul>
+  <p>We do <strong>not</strong> knowingly collect personal information such as names, email addresses, or precise location data unless you voluntarily provide it (e.g., when contacting us for support).</p>
+
+  <h3>2. How We Use Information</h3>
+  <p>We use the information we collect to operate and improve our apps, fix technical issues and bugs, analyze usage trends and gameplay patterns, and serve relevant advertisements (if applicable).</p>
+
+  <h3>3. Third-Party Services</h3>
+  <p>Our apps may use third-party services that collect information. These may include Google Play Services, Google AdMob or other ad networks, and Firebase Analytics. Each third-party service operates under its own privacy policy, and we encourage you to review those policies.</p>
+
+  <h3>4. Children's Privacy</h3>
+  <p>Our apps are not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us immediately and we will take steps to delete such information.</p>
+
+  <h3>5. Data Security</h3>
+  <p>We take reasonable measures to protect the information collected through our apps. However, no method of electronic transmission or storage is 100% secure, and we cannot guarantee absolute security.</p>
+
+  <h3>6. Your Choices</h3>
+  <p>You can reset your advertising identifier or opt out of personalized ads through your device settings. You can also uninstall our apps at any time to stop all data collection associated with that app.</p>
+
+  <h3>7. Changes to This Policy</h3>
+  <p>We may update this Privacy Policy from time to time. Changes will be reflected on this page with an updated effective date. We encourage you to review this page periodically.</p>
+
+  <h3>8. Contact Us</h3>
+  <p>If you have questions about this Privacy Policy, please contact us at the email address listed in the <a href="#contact">Contact</a> section below.</p>
+</section>
+
+<hr class="divider">
+
+<!-- TERMS OF SERVICE -->
+<section class="section" id="terms">
+  <div class="section-label">Legal</div>
+  <h2>Terms of Service</h2>
+  <p><strong>Effective Date:</strong> February 26, 2026</p>
+  <p>By downloading or using any application published by Bose Studios (a division of Bose Ventures LLC), you agree to the following terms.</p>
+
+  <h3>1. Use of Our Apps</h3>
+  <p>Our apps are provided for personal, non-commercial entertainment. You agree not to misuse our apps, attempt to reverse-engineer them, or use them in any way that violates applicable laws.</p>
+
+  <h3>2. Intellectual Property</h3>
+  <p>All content in our apps — including graphics, audio, code, and game design — is the property of Bose Ventures LLC and is protected by intellectual property laws. You may not reproduce, distribute, or create derivative works without our written permission.</p>
+
+  <h3>3. In-App Purchases</h3>
+  <p>Some of our apps may offer in-app purchases. All purchases are processed through Google Play and are subject to Google's terms. Refund requests should be directed to Google Play support.</p>
+
+  <h3>4. Disclaimer of Warranties</h3>
+  <p>Our apps are provided "as is" without warranties of any kind. We do not guarantee that our apps will be error-free, uninterrupted, or free of harmful components.</p>
+
+  <h3>5. Limitation of Liability</h3>
+  <p>To the fullest extent permitted by law, Bose Ventures LLC shall not be liable for any indirect, incidental, or consequential damages arising from your use of our apps.</p>
+
+  <h3>6. Changes to These Terms</h3>
+  <p>We reserve the right to modify these Terms of Service at any time. Continued use of our apps after changes are posted constitutes acceptance of the revised terms.</p>
+
+  <h3>7. Governing Law</h3>
+  <p>These terms are governed by the laws of the state in which Bose Ventures LLC is registered.</p>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="section-label">Get in Touch</div>
+  <h2>Contact Us</h2>
+  <p>Have a question, found a bug, or want to share feedback? We'd love to hear from you.</p>
+  <div class="contact-card">
+    <p><strong>Developer:</strong> Bose Studios</p>
+    <p><strong>Company:</strong> Bose Ventures LLC</p>
+    <p><strong>Email:</strong> <a href="mailto:thebosestudios@gmail.com">thebosestudios@gmail.com</a></p>
+  </div>
+  <p style="margin-top: 16px; font-size: 0.85rem; color: var(--text-dim);">We aim to respond to all inquiries within 48 hours.</p>
+</section>
+
+<!-- FOOTER -->
+<
